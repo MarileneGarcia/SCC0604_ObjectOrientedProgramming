@@ -11,6 +11,8 @@
     #define F 0					// Formiga
     #define A 1					// Água
     #define P 2					// Parede
+
+
     #define VAZIO 3					// Vazio
     #define MAX_F 4
     #define MIN_F 5
