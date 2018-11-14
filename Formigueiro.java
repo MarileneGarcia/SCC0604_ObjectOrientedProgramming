@@ -1,5 +1,3 @@
-package Trabalho_Final_POO;
-
 
 public class Formigueiro{
     private static final int l_cenario = 1000;
@@ -7,13 +5,14 @@ public class Formigueiro{
 
     private static final int taxa_mut = 40;
     private static final int tan_DNA = 16;
-    
+
     private int indice;
     List<List<Celula>> matriz;
     private int DNA[tan_DNA];
     private float x_medio;
     private int x_max;
     private float fitness;
+    
 
     public Formigueiro(int indice) {
         this.indice = indice;
@@ -37,5 +36,30 @@ public class Formigueiro{
         }
     }
 
+
+    public void setX_medio(float x_medio) {
+        this.x_medio = x_medio;
+    }
+
+    public void setFitness(float fitness) {
+        this.fitness = fitness;
+    }
+
+    public void setX_max(int x_max) {
+        this.x_max = x_max;
+    }
+
+    public float getX_medio() {
+        return x_medio;
+    }
+
+    public int getX_max() {
+        return x_max;
+    }
+
+    public float getFitness() {
+        return fitness;
+    }
+    
 
 }
