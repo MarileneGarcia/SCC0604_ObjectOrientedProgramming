@@ -1,17 +1,13 @@
 
 
 public class Celula{
-    // Constantes comuns a todas as formigas
-    private static final int VAZIO = 0;
-    private static final int FORMIGA = 1;
-    private static final int AGUA = 2;
-    private static final int PAREDE = 3;
+    // Constantes para o tipo
+    private static final int VAZIO = 0; // branco
+    private static final int FORMIGA = 1; // vermelho
+    private static final int AGUA = 2; // azul
+    private static final int PAREDE = 3; // preto
 
-    private static final int RAIO_FORMIGA = 1;
-    private static final int RAIO_VISAO = 4;
-    private static final int MAX_VIDA = 5;
-
-    // Variáveis que definem a classe formiga
+    // Variáveis que definem a classe celula
     private int tipo;
     private int x;
     private int y;
@@ -36,6 +32,11 @@ public class Celula{
     }
 
     public class Formiga extends Celula{
+        // Constantes de informação da formiga
+        private static final int RAIO_FORMIGA = 1;
+        private static final int RAIO_VISAO = 4;
+        private static final int MAX_VIDA = 5;
+
         private int vida;
         private int visao_norte;
         private int visao_leste;
