@@ -12,7 +12,7 @@ public class Formigueiro{
     private float x_medio;
     private int x_max;
     private float fitness;
-    
+
 
     public Formigueiro(int indice) {
         this.indice = indice;
@@ -36,6 +36,17 @@ public class Formigueiro{
         }
     }
 
+    public Celula getCelula(int x, int y) {
+        return matriz[x][y];
+    }
+
+    public void setDNA(int[] DNA) {
+        this.DNA = DNA;
+    }
+
+    public int[] getDNA() {
+        return DNA;
+    }
 
     public void setX_medio(float x_medio) {
         this.x_medio = x_medio;
@@ -60,6 +71,10 @@ public class Formigueiro{
     public float getFitness() {
         return fitness;
     }
+
+
+}
+    
     
 
 }
