@@ -1,5 +1,3 @@
-package Trabalho_Final_POO;
-
 
 public class Formigueiro{
     private static final int l_cenario = 1000;

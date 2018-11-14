@@ -31,9 +31,12 @@ public class Celula{
         return this.tipo;
     }
 
+    public void setTipo(int tipo){
+        this.tipo = tipo;
+    }
+
     public class Formiga extends Celula{
         // Constantes de informação da formiga
-        private static final int RAIO_FORMIGA = 1;
         private static final int RAIO_VISAO = 4;
         private static final int MAX_VIDA = 5;
 
