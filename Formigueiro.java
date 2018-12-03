@@ -1,52 +1,81 @@
+import java.util.*;  
 
 public class Formigueiro{
-    private static final int l_cenario = 1000;
-    private static final int h_cenario = 500;
 
-    private static final int taxa_mut = 40;
-    private static final int tan_DNA = 16;
+    /* Constantes para a matriz do formigueiro */
+    public static final int VAZIO = 0; // branco
+    public static final int FORMIGA = 1; // vermelho
+    public static final int AGUA = 2; // azul
+    public static final int PAREDE = 3; // preto
+    
+    public static final int L_CENARIO = 50;
+    public static final int H_CENARIO = 30;
+
+    private static final int TAXA_MUT = 40;
+    private static final int TAM_DNA = 16;
 
     private int indice;
-    List<List<Celula>> matriz;
-    private int DNA[tan_DNA];
+    private ArrayList<Formiga> formigas;
+    private int num_formigas;
+    private int DNA[];
     private float x_medio;
     private int x_max;
     private float fitness;
+    private int matriz[][]; 
 
-
-    public Formigueiro(int indice) {
+    public Formigueiro(int indice, int preenchimento) {
         this.indice = indice;
+        formigas = new ArrayList<Formiga>();
+        DNA = new int[TAM_DNA];
+        num_formigas = 0;
         x_medio = -1;
         x_max = -1;
         fitness = 0;
-        matriz = new ArrayList<List<Celula>>()
-        for (int i = 0; i < h_cenario; i++) {
-            // seu Objeto é a classe que representa o objeto q vc ta armazenando no ARrayList
-            matriz.add(new ArrayList<Celula>());
-        }
-        for (int i = 0; i < h_cenario; i++) {
-            for (int j = 0; i < h_cenario; i++) {
-                if (i == 0 || i == (l_cenario - 1) || j == 0 || j == (h_cenario - 1))
-                    matriz[i][j] = new Celula(3, j, i);
-                else if (j > 0.5 * l_cenario && j < 0.7 * l_cenario)
-                    matriz[i][j] = new Celula(2, j, i);
+
+        Random gerador = new Random();
+        matriz = new int[H_CENARIO][L_CENARIO];
+        for (int i = 0; i < H_CENARIO; i++) {
+            for (int j = 0; j < L_CENARIO; j++) {
+                if (i == 0 || i == (H_CENARIO - 1) || j == 0 || j == (L_CENARIO - 1))
+                    matriz[i][j] = PAREDE;
+                else if (j > 0.5 * L_CENARIO && j < 0.7 * L_CENARIO)
+                    matriz[i][j] = AGUA;
+                else if (j <= 0.5 * L_CENARIO){
+                    if (gerador.nextInt(100)<preenchimento){
+                        matriz[i][j] = FORMIGA;
+                        formigas.add(new Formiga(i,j));
+                        num_formigas++;
+                    }
+                }
                 else
-                    matriz[i][j] = new Celula(0, j, i);
+                    matriz[i][j] = VAZIO;
+                
+                System.out.print(matriz[i][j] + " ");
             }
+            System.out.println();
         }
+        //System.out.println("Numero de formigas " + num_formigas);
+        System.out.println("Numero de formigas " + formigas.size());
+
+        System.out.print("DNA do formigueiro:  ");
+        for(int k=0; k<TAM_DNA; k++){
+            DNA[k] = gerador.nextInt(6);
+            System.out.print(DNA[k] + " ");
+        }
+        System.out.println();
     }
 
-    public Celula getCelula(int x, int y) {
+    public int getCelula(int x, int y) {
         return matriz[x][y];
     }
 
-    public void setDNA(int[] DNA) {
+    /*public void setDNA(int[] DNA) {
         this.DNA = DNA;
-    }
+    }*/
 
-    public int[] getDNA() {
+    /*public int[] getDNA() {
         return DNA;
-    }
+    }*/
 
     public void setX_medio(float x_medio) {
         this.x_medio = x_medio;
@@ -72,9 +101,15 @@ public class Formigueiro{
         return fitness;
     }
 
-
-}
-    
-    
-
+    public void rodaGeracao() {
+        for (Formiga iter_formiga : this.formigas) {  
+            Formiga formiga_analisar = iter_formiga;
+            System.out.println(" > Posicao: (" + formiga_analisar.getX() + " " + formiga_analisar.getY() + " )");
+            System.out.println(" > Vida: " + formiga_analisar.getVida());
+            formiga_analisar.setVisao(matriz);
+            formiga_analisar.getDecisao(DNA);
+            //formiga_analisar.setMov(matriz);
+            System.out.println();
+        }
+    }
 }
