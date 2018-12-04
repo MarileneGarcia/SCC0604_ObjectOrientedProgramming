@@ -8,7 +8,7 @@ public class Formigueiro{
     public static final int AGUA = 2; // azul
     public static final int PAREDE = 3; // preto
     
-    public static final int L_CENARIO = 50;
+    public static final int L_CENARIO = 60;
     public static final int H_CENARIO = 30;
 
     private static final int TAXA_MUT = 40;
@@ -47,22 +47,18 @@ public class Formigueiro{
                         num_formigas++;
                     }
                 }
-                else
+                else 
                     matriz[i][j] = VAZIO;
-                
-                System.out.print(matriz[i][j] + " ");
             }
-            System.out.println();
         }
-        //System.out.println("Numero de formigas " + num_formigas);
-        System.out.println("Numero de formigas " + formigas.size());
+        //System.out.println("Numero de formigas " + formigas.size());
 
-        System.out.print("DNA do formigueiro:  ");
+        //System.out.print("DNA do formigueiro:  ");
         for(int k=0; k<TAM_DNA; k++){
             DNA[k] = gerador.nextInt(6);
-            System.out.print(DNA[k] + " ");
+            //System.out.print(DNA[k] + " ");
         }
-        System.out.println();
+        //System.out.println();
     }
 
     public int getCelula(int x, int y) {
@@ -76,6 +72,15 @@ public class Formigueiro{
     /*public int[] getDNA() {
         return DNA;
     }*/
+
+    public void printMatriz() {
+        for (int i = 0; i < H_CENARIO; i++) {
+            for (int j = 0; j < L_CENARIO; j++) {
+                System.out.print(matriz[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
 
     public void setX_medio(float x_medio) {
         this.x_medio = x_medio;
@@ -102,14 +107,19 @@ public class Formigueiro{
     }
 
     public void rodaGeracao() {
-        for (Formiga iter_formiga : this.formigas) {  
-            Formiga formiga_analisar = iter_formiga;
-            System.out.println(" > Posicao: (" + formiga_analisar.getX() + " " + formiga_analisar.getY() + " )");
-            System.out.println(" > Vida: " + formiga_analisar.getVida());
+        System.out.println("Numero de formigas antes: " + formigas.size());
+        Iterator<Formiga> iter_formiga = formigas.iterator();
+        while ( iter_formiga.hasNext() ) {  
+            Formiga formiga_analisar = iter_formiga.next();
+            //System.out.println(" > Posicao: (" + formiga_analisar.getX() + " " + formiga_analisar.getY() + ")");
+            //System.out.println(" > Vida: " + formiga_analisar.getVida());
             formiga_analisar.setVisao(matriz);
             formiga_analisar.getDecisao(DNA);
-            //formiga_analisar.setMov(matriz);
-            System.out.println();
+            formiga_analisar.setMov(matriz);
+            if(formiga_analisar.getVida() <= 0)
+                iter_formiga.remove();
+            //System.out.println();
         }
+        System.out.println("Numero de formigas depois: " + formigas.size());
     }
 }
