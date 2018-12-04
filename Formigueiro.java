@@ -61,6 +61,10 @@ public class Formigueiro{
         //System.out.println();
     }
 
+    public int getIndice(){
+        return this.indice;
+    }
+
     public int getCelula(int x, int y) {
         return matriz[x][y];
     }
