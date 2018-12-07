@@ -1,12 +1,14 @@
+import java.util.ArrayList;
+
 public class RebootPopulation
 {
-    private ArrayList<ArrayList<PIXEL>> pixels = new ArrayList<ArrayList<PIXEL>>;
-    private ArrayList<FORMIGUEIRO> fumi = new ArrayList<FORMIGUEIRO>;
-    
+    private ArrayList<ArrayList<PIXEL>> pixels = new ArrayList<ArrayList<PIXEL>>();
+    private ArrayList<Formigueiro> fumi = new ArrayList<Formigueiro>();
+
     public RebootPopulation(){}
     
     
-    void rebootPopulation(ArrayList<ArrayList<PIXEL>> matriz, ArrayList<FORMIGUEIRO> formigueiro)
+    void rebootPopulation(ArrayList<ArrayList<PIXEL>> matriz, ArrayList<Formigueiro> formigueiro)
     {
         int k, i, j;
         int deltaI=0, deltaJ=0;
@@ -20,7 +22,7 @@ public class RebootPopulation
             num_formigas = formigueiro.get(k).getFila_formigas().getTamanho();
             for(tamanho = 0; tamanho<num_formigas; tamanho++)
             {
-                formiga_remover = desenfileirar(formigueiro.get(k).getFila_formigas());
+                formiga_remover = formigueiro.get(k).getFila_formigas().desenfileirar();
                 x = formiga_remover.getX();
                 y = formiga_remover.getY();
                 for(m=-ANT_RATIO; m<=ANT_RATIO; m++)

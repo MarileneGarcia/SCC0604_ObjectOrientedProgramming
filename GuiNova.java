@@ -9,7 +9,9 @@ import javax.imageio.ImageIO;
 import java.util.Random;
 
 public class GuiNova {
-    public static void main(String args[]) {
+
+    public boolean iniciar = false, pausar = false;
+    /*public static void main(String args[]) {
         GuiNova inter = new GuiNova();
         int matriz1[][] = new int[530][280];
         int matriz2[][] = new int[530][280];
@@ -17,23 +19,26 @@ public class GuiNova {
         int matriz4[][] = new int[530][280];
         Random r = new Random();
         while(true){
-            for(int i = 0; i< 530; i++){
-                for(int j = 0; j < 280; j++){
-                    matriz1[i][j] = r.nextInt(3);
-                    matriz2[i][j] = r.nextInt(3);
-                    matriz3[i][j] = r.nextInt(3);
-                    matriz4[i][j] = r.nextInt(3);
-                }
+            System.out.print("");
+            if(inter.pausar == false){
+                System.out.print("");
+                if(inter.iniciar == true){
+                    
+                    for(int i = 0; i< 530; i++){
+                        for(int j = 0; j < 280; j++){
+                            matriz1[i][j] = r.nextInt(3);
+                            matriz2[i][j] = r.nextInt(3);
+                            matriz3[i][j] = r.nextInt(3);
+                            matriz4[i][j] = r.nextInt(3);
+                        }
+                    }
+                    inter.editAll(matriz1, matriz2, matriz3, matriz4);
+                }   
             }
-            inter.editAll(matriz1, matriz2, matriz3, matriz4);
         }
-           /* try {
-                Thread.sleep(500);
-             } catch (Exception e) {
-                e.printStackTrace();
-             }
-        }*/
-    }
+    }*/
+
+    
 
     // Campos
     private JFrame quadro;
@@ -77,9 +82,9 @@ public class GuiNova {
         boton1 = new JButton("Iniciar");
         boton2 = new JButton("Pausar");
         boton3 = new JButton("Parar");
-        boton1.addActionListener(new ReconhecedorActionListener1());
-        //boton2.addActionListener(new ReconhecedorActionListener2());
-        boton3.addActionListener(new ReconhecedorActionListener3());
+        boton1.addActionListener(new ReconhecedorActionListenerIniciar());
+        boton2.addActionListener(new ReconhecedorActionListenerPausar());
+        boton3.addActionListener(new ReconhecedorActionListenerParar());
 
         container = new JPanel();
         container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
@@ -159,41 +164,25 @@ public class GuiNova {
 
     }
 
-    class ReconhecedorActionListener1 implements ActionListener {
+    class ReconhecedorActionListenerIniciar implements ActionListener {
         public void actionPerformed(ActionEvent event) {
-            /*
-             * String massa = campoMassa.getText(); String altura = campoAlt.getText();
-             * float fator = Float.valueOf(massa); float fator1 = Float.valueOf(altura);
-             * if(fator1 <= 0){ JOptionPane optionPane = new
-             * JOptionPane("Error: Altura Inválida", JOptionPane.ERROR_MESSAGE); JDialog
-             * dialog = optionPane.createDialog("Failure"); dialog.setAlwaysOnTop(true);
-             * dialog.setVisible(true); }else{ float resultado = fator/(fator1*fator1);
-             * rotuloResult.setText(String.valueOf(resultado)); if(resultado < 18.5)
-             * rotuloClass.setText("Abaixo do Peso"); else if(resultado <24.9)
-             * rotuloClass.setText("Peso Normal"); else if(resultado < 29.9)
-             * rotuloClass.setText("Sobrepeso"); else if(resultado < 34.9)
-             * rotuloClass.setText("Obesidade grau I"); else if(resultado < 39.9)
-             * rotuloClass.setText("Obesidade grau II"); else
-             * rotuloClass.setText("Obesidade grau III"); }
-             */
+            pausar = false;
+            iniciar = true;
         }
     }
 
-    ActionListener ActionListenerAtu =  new ActionListener(){
+    class ReconhecedorActionListenerPausar implements ActionListener {
         public void actionPerformed(ActionEvent event) {
-           /* editarf1(matriz1);
-            editarf2(matriz2);
-            editarf3(matriz3);
-            editarf4(matriz4);*/
+            pausar = true;
         }
-    };
+    }
 
-    class ReconhecedorActionListener3 implements ActionListener {
+
+
+    class ReconhecedorActionListenerParar implements ActionListener {
         public void actionPerformed(ActionEvent event) {
-            /*
-             * rotuloResult.setText(" "); rotuloClass.setText(" "); campoMassa.setText(" ");
-             * campoAlt.setText(" ");
-             */
+            pausar = true;
+            quadro.setVisible(false);
         }
     }
 
@@ -323,7 +312,7 @@ public class GuiNova {
         int width = 530; // 545
         int height = 280; // 300
         for (int y = 0; y < height; y++) {
-            for (int x = 0; x < width / 3; x++) {
+            for (int x = 0; x < (int)(width * 0.5); x++) {
                 if( y == 0 || x == 0 || x == width-1 || y == height-1){
                     int p = (250 << 24) | (0 << 16) | (0 << 8) | 0;
                     img1.setRGB(x, y, p);
@@ -346,7 +335,7 @@ public class GuiNova {
         }
 
         for (int y = 0; y < height; y++) {
-            for (int x = width / 3; x < 2 * width / 3; x++) {
+            for (int x = (int)(width * 0.5); x < (int)(width * 0.7); x++) {
                 if( y == 0 || x == 0 || x == width-1 || y == height-1){
                     int p = (250 << 24) | (0 << 16) | (0 << 8) | 0;
                     img1.setRGB(x, y, p);
@@ -369,7 +358,7 @@ public class GuiNova {
         }
 
         for (int y = 0; y < height; y++) {
-            for (int x = 2 * width / 3; x < width; x++) {
+            for (int x = (int) (width * 0.7); x < width; x++) {
                 if( y == 0 || x == 0 || x == width-1 || y == height-1){
                     int p = (250 << 24) | (0 << 16) | (0 << 8) | 0;
                     img1.setRGB(x, y, p);

@@ -71,7 +71,7 @@ public class Formiga{
         int y = this.getY();
 
 
-        switch(matriz[x-1][y]) // Norte
+        switch(matriz[x][y-1]) // Norte
         {
             case Formigueiro.PAREDE:
                 norte = Formigueiro.PAREDE;
@@ -90,7 +90,7 @@ public class Formiga{
             break;
         }
 
-        switch(matriz[x][y+1]) // Leste
+        switch(matriz[x+1][y]) // Leste
         {
             case Formigueiro.PAREDE:
                 leste = Formigueiro.PAREDE;
@@ -109,7 +109,7 @@ public class Formiga{
             break;
         }
 
-        switch(matriz[x+1][y]) // Sul
+        switch(matriz[x][y+1]) // Sul
         {
             case Formigueiro.PAREDE:
                 sul = Formigueiro.PAREDE;
@@ -128,7 +128,7 @@ public class Formiga{
             break;
         }
 
-        switch(matriz[x][y-1]) // Oeste
+        switch(matriz[x-1][y]) // Oeste
         {
             case Formigueiro.PAREDE:
                 oeste = Formigueiro.PAREDE;
@@ -379,19 +379,19 @@ public class Formiga{
         switch(move)
         {
             case NORTE:
-                if( (matriz[x-1][y] == Formigueiro.PAREDE) || (matriz[x-1][y] == Formigueiro.FORMIGA) ) move = PARADO;
+                if( (matriz[x][y-1] == Formigueiro.PAREDE) || (matriz[x][y-1] == Formigueiro.FORMIGA) ) move = PARADO;
             break;
 
             case LESTE:
-                if( (matriz[x][y+1] == Formigueiro.PAREDE) || (matriz[x][y+1] == Formigueiro.FORMIGA) ) move = PARADO;
+                if( (matriz[x+1][y] == Formigueiro.PAREDE) || (matriz[x+1][y] == Formigueiro.FORMIGA) ) move = PARADO;
             break; 
 
             case SUL:
-                if( (matriz[x+1][y] == Formigueiro.PAREDE) || (matriz[x+1][y] == Formigueiro.FORMIGA) ) move = PARADO; 
+                if( (matriz[x][y+1] == Formigueiro.PAREDE) || (matriz[x][y+1] == Formigueiro.FORMIGA) ) move = PARADO; 
             break;
 
             case OESTE:
-                if( (matriz[x][y-1] == Formigueiro.PAREDE) || (matriz[x][y-1] == Formigueiro.FORMIGA) ) move = PARADO;
+                if( (matriz[x-1][y] == Formigueiro.PAREDE) || (matriz[x-1][y] == Formigueiro.FORMIGA) ) move = PARADO;
             break;
         }
 
@@ -401,27 +401,17 @@ public class Formiga{
             break;
 
             case NORTE:
-                if( (this.y > 0.5 * Formigueiro.L_CENARIO) && (this.y < 0.7 * Formigueiro.L_CENARIO) )
-                    matriz[x][y] = Formigueiro.AGUA;
-                else
-                    matriz[x][y] = Formigueiro.VAZIO;
-                this.x = x-1;
-                this.y = y;
-                matriz[x-1][y] = Formigueiro.FORMIGA;
-            break;
-
-            case LESTE:	
-                if( (this.y > 0.5 * Formigueiro.L_CENARIO) && (this.y < 0.7 * Formigueiro.L_CENARIO) )
+                if( (this.x > 0.5 * Formigueiro.L_CENARIO) && (this.x < 0.7 * Formigueiro.L_CENARIO) )
                     matriz[x][y] = Formigueiro.AGUA;
                 else
                     matriz[x][y] = Formigueiro.VAZIO;
                 this.x = x;
-                this.y = y+1;
-                matriz[x][y+1] = Formigueiro.FORMIGA;
+                this.y = y-1;
+                matriz[x][y-1] = Formigueiro.FORMIGA;
             break;
 
-            case SUL:
-                if( (this.y > 0.5 * Formigueiro.L_CENARIO) && (this.y < 0.7 * Formigueiro.L_CENARIO) )
+            case LESTE:	
+                if( (this.x > 0.5 * Formigueiro.L_CENARIO) && (this.x < 0.7 * Formigueiro.L_CENARIO) )
                     matriz[x][y] = Formigueiro.AGUA;
                 else
                     matriz[x][y] = Formigueiro.VAZIO;
@@ -430,19 +420,29 @@ public class Formiga{
                 matriz[x+1][y] = Formigueiro.FORMIGA;
             break;
 
-            case OESTE:
-                if( (this.y > 0.5 * Formigueiro.L_CENARIO) && (this.y < 0.7 * Formigueiro.L_CENARIO) )
+            case SUL:
+                if( (this.x > 0.5 * Formigueiro.L_CENARIO) && (this.x < 0.7 * Formigueiro.L_CENARIO) )
                     matriz[x][y] = Formigueiro.AGUA;
                 else
                     matriz[x][y] = Formigueiro.VAZIO;
                 this.x = x;
-                this.y = y-1;
-                matriz[x][y-1] = Formigueiro.FORMIGA;
+                this.y = y + 1;
+                matriz[x][y+1] = Formigueiro.FORMIGA;
+            break;
+
+            case OESTE:
+                if( (this.x > 0.5 * Formigueiro.L_CENARIO) && (this.x < 0.7 * Formigueiro.L_CENARIO) )
+                    matriz[x][y] = Formigueiro.AGUA;
+                else
+                    matriz[x][y] = Formigueiro.VAZIO;
+                this.x = x - 1;
+                this.y = y;
+                matriz[x-1][y] = Formigueiro.FORMIGA;
             break;
         }
 
         int count_neighbor = 0;
-        if( (this.y > 0.5 * Formigueiro.L_CENARIO) && (this.y < 0.7 * Formigueiro.L_CENARIO) ) {
+        if( (this.x > 0.5 * Formigueiro.L_CENARIO) && (this.x < 0.7 * Formigueiro.L_CENARIO) ) {
             if(this.visao_norte == Formigueiro.AGUA) count_neighbor++;
             if(this.visao_leste == Formigueiro.AGUA) count_neighbor++;
             if(this.visao_sul == Formigueiro.AGUA) count_neighbor++;
