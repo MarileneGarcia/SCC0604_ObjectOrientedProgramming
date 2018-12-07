@@ -11,7 +11,7 @@ import java.util.Random;
 public class GuiNova {
 
     public boolean iniciar = false, pausar = false;
-    public static void main(String args[]) {
+    /*public static void main(String args[]) {
         GuiNova inter = new GuiNova();
         int matriz1[][] = new int[530][280];
         int matriz2[][] = new int[530][280];
@@ -36,7 +36,7 @@ public class GuiNova {
                 }   
             }
         }
-    }
+    }*/
 
     
 
@@ -312,7 +312,7 @@ public class GuiNova {
         int width = 530; // 545
         int height = 280; // 300
         for (int y = 0; y < height; y++) {
-            for (int x = 0; x < width / 3; x++) {
+            for (int x = 0; x < (int)(width * 0.5); x++) {
                 if( y == 0 || x == 0 || x == width-1 || y == height-1){
                     int p = (250 << 24) | (0 << 16) | (0 << 8) | 0;
                     img1.setRGB(x, y, p);
@@ -335,7 +335,7 @@ public class GuiNova {
         }
 
         for (int y = 0; y < height; y++) {
-            for (int x = width / 3; x < 2 * width / 3; x++) {
+            for (int x = (int)(width * 0.5); x < (int)(width * 0.7); x++) {
                 if( y == 0 || x == 0 || x == width-1 || y == height-1){
                     int p = (250 << 24) | (0 << 16) | (0 << 8) | 0;
                     img1.setRGB(x, y, p);
@@ -358,7 +358,7 @@ public class GuiNova {
         }
 
         for (int y = 0; y < height; y++) {
-            for (int x = 2 * width / 3; x < width; x++) {
+            for (int x = (int) (width * 0.7); x < width; x++) {
                 if( y == 0 || x == 0 || x == width-1 || y == height-1){
                     int p = (250 << 24) | (0 << 16) | (0 << 8) | 0;
                     img1.setRGB(x, y, p);

@@ -8,11 +8,11 @@ public class Formigueiro{
     public static final int AGUA = 2; // azul
     public static final int PAREDE = 3; // preto
     
-    public static final int L_CENARIO = 60;
-    public static final int H_CENARIO = 30;
+    public static final int L_CENARIO = 530;
+    public static final int H_CENARIO = 280;
 
-    private static final int TAXA_MUT = 40;
-    private static final int TAM_DNA = 16;
+    public static final int TAXA_MUT = 40;
+    public static final int TAM_DNA = 16;
 
     private int indice;
     private ArrayList<Formiga> formigas;
@@ -33,14 +33,14 @@ public class Formigueiro{
         fitness = 0;
 
         Random gerador = new Random();
-        matriz = new int[H_CENARIO][L_CENARIO];
-        for (int i = 0; i < H_CENARIO; i++) {
-            for (int j = 0; j < L_CENARIO; j++) {
-                if (i == 0 || i == (H_CENARIO - 1) || j == 0 || j == (L_CENARIO - 1))
+        matriz = new int[L_CENARIO][H_CENARIO];
+        for (int j = 0; j < H_CENARIO; j++) {
+            for (int i = 0; i < L_CENARIO; i++) {
+                if (j == 0 || j == (H_CENARIO - 1) || i == 0 || i == (L_CENARIO - 1))
                     matriz[i][j] = PAREDE;
-                else if (j > 0.5 * L_CENARIO && j < 0.7 * L_CENARIO)
+                else if (i > 0.5 * L_CENARIO && i < 0.7 * L_CENARIO)
                     matriz[i][j] = AGUA;
-                else if (j <= 0.5 * L_CENARIO){
+                else if (i <= 0.5 * L_CENARIO){
                     if (gerador.nextInt(100)<preenchimento){
                         matriz[i][j] = FORMIGA;
                         formigas.add(new Formiga(i,j));
@@ -69,6 +69,10 @@ public class Formigueiro{
         return matriz[x][y];
     }
 
+    public int[][] getMatriz() {
+        return matriz;
+    }
+
     /*public void setDNA(int[] DNA) {
         this.DNA = DNA;
     }*/
@@ -78,8 +82,8 @@ public class Formigueiro{
     }*/
 
     public void printMatriz() {
-        for (int i = 0; i < H_CENARIO; i++) {
-            for (int j = 0; j < L_CENARIO; j++) {
+        for (int j = 0; j < H_CENARIO; j++) {
+            for (int i = 0; i < L_CENARIO; i++) {
                 System.out.print(matriz[i][j] + " ");
             }
             System.out.println();
