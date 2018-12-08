@@ -73,6 +73,8 @@ public class Formigueiro{
         return matriz;
     }
 
+
+
     /*public void setDNA(int[] DNA) {
         this.DNA = DNA;
     }*/
@@ -109,6 +111,8 @@ public class Formigueiro{
     public float getX_medio() {
         return x_medio;
     }
+
+    public void removeFormiga(int i){ formigas.remove(i);}
 
     public int getX_max() {
         return x_max;

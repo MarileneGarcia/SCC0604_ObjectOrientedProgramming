@@ -3,7 +3,7 @@ import java.lang.*;
 
 public class Formiga{
     // Constantes de informação da formiga
-    private static final int MAX_VIDA = 5;
+    public static final int MAX_VIDA = 5;
 
     /* Possiveis decisoes: caracteristicas do DNA */ 
     public static final int SEGUE_AGUA = 0;
@@ -64,6 +64,8 @@ public class Formiga{
     public int getOeste(){
         return this.visao_oeste;
     }
+
+    public void setVida(int vida) { this.vida = vida; }
 
     public void setVisao(int[][] matriz) {
         int norte = -1, sul = -1, leste = -1, oeste = -1;
@@ -158,6 +160,7 @@ public class Formiga{
         //System.out.println(" 	-> Visao Sul:    " + this.visao_sul);
         //System.out.println(" 	-> Visao Leste:  " + this.visao_leste);
     }
+
 
     public void getDecisao(int[] DNA) {
         int estado;
