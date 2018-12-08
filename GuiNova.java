@@ -64,7 +64,7 @@ public class GuiNova {
     private BufferedImage img3;
     private BufferedImage img4;
     private JLabel gerac;
-    private JLabel mut;
+    private JLabel loop;
 
     // Construtor
     public GuiNova() {
@@ -77,7 +77,7 @@ public class GuiNova {
         quadro = new JFrame("Formigueiros");
 
         gerac = new JLabel( "                                 Geração: " );
-        mut = new JLabel( "                                   Mutação: " );
+        loop = new JLabel( "                                   Loop: " );
         JFrame.setDefaultLookAndFeelDecorated(true);
         boton1 = new JButton("Iniciar");
         boton2 = new JButton("Pausar");
@@ -147,7 +147,7 @@ public class GuiNova {
         controle.add(boton2);
         controle.add(boton3);
         controle.add(gerac);
-        controle.add(mut);
+        controle.add(loop);
 
         container.add(controle);
 
@@ -214,13 +214,15 @@ public class GuiNova {
         //quadro.setVisible(true);
     }
 
-    public void editAll(int matriz1[][], int matriz2[][], int matriz3[][], int matriz4[][]){
+    public void editAll(int matriz1[][], int matriz2[][], int matriz3[][], int matriz4[][], int i, int j){
         editarf1(matriz1);
         editarf2(matriz2);
         editarf3(matriz3);
         editarf4(matriz4);
         /*Timer timer = new Timer(100, ActionListenerAtu);
         timer.start();*/
+        gerac.setText( "                                 Geração: " + i);
+        loop.setText( "                                   Loop: " + j );
         SwingUtilities.updateComponentTreeUI(quadro
         ); 
         quadro.setVisible(true);

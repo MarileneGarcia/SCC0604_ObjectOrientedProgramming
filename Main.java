@@ -58,7 +58,7 @@ public class Main
                     System.out.println("Iniciar: " + janela.iniciar);
                     if(janela.iniciar == true){
                         System.out.print("");
-                        janela.editAll(matriz_0, matriz_1, matriz_2, matriz_3);
+                        janela.editAll(matriz_0, matriz_1, matriz_2, matriz_3, i, j);
 
                         for (Formigueiro formigueiro_analisar : formigueiros) 
                         {
