@@ -232,7 +232,8 @@ public class GuiNova {
         editarf4(matriz4);
         /*Timer timer = new Timer(100, ActionListenerAtu);
         timer.start();*/
-        SwingUtilities.updateComponentTreeUI(quadro); 
+        SwingUtilities.updateComponentTreeUI(quadro
+        ); 
         quadro.setVisible(true);
     }
 
