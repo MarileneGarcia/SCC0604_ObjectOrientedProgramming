@@ -14,7 +14,7 @@ quatro telas diferentes da janela, cada um contém um rio (pixels azuis) que div
 evolução são as formigas aprenderem como atravessar o rio e chegar ao território na direita da tela. Sabe-se que formigas
 sozinhas não sabem nadar, logo morrem se tentarem atravessar o rio, mas formigas juntas podem atravessar formando uma ponte
 com uma delas sempre na margem esquerda do rio.</p>
-    </p>O algoritmo está rodando 50 gerações de formigas, sendo que em cada geração ocorrem 350 vezes os processos de decisão para
+    </p>O algoritmo está rodando 50 gerações de formigas, sendo que em cada geração ocorrem 300 vezes os processos de decisão para
 onde cada formiga irá se mover e posteriormente movimento delas. Ao final de cada geração, ocorre a evolução, ou seja os processos
 de seleção do DNA do melhor formigueiro (o DNA do melhor formigueiro é o que apresenta a melhor avaliação segundo um sistema de
 pontos para decidir quais formigas de cada formigueiro obtiveram o melhor desempenho em tentar atravessar o rio), cruzamento do
