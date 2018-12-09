@@ -29,9 +29,9 @@ public class Main
         }
         System.out.println("Iniciando... " +  janela.iniciar);
 
-        for(int i=0; (i<GERACOES) && (janela.pausar == false); i++) 
+        for(int i=0; (i<GERACOES); i++) 
         {
-            for(int j=0; (j<TIME_GERACAO) && (janela.pausar == false); j++) 
+            for(int j=0; (j<TIME_GERACAO); j++) 
             {
                 System.out.println("Loop: " + j + " (Geração: " + i + ")");      
 
