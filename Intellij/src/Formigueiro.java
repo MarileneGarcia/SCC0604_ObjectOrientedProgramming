@@ -11,7 +11,7 @@ public class Formigueiro{
     public static final int L_CENARIO = 530;
     public static final int H_CENARIO = 280;
 
-    public static final int TAXA_MUT = 15;
+    public static final int TAXA_MUT = 30; //A taxa de mutacao deve ser um inteiro menor que 100
     public static final int TAM_DNA = 16;
 
     private int indice;
@@ -171,7 +171,7 @@ public class Formigueiro{
         System.out.println( "	-> Numero de Formigas: " + this.formigas.size() );
         System.out.println("	-> X Medio: " + this.x_medio);
         System.out.println("	-> X Maximo: " + this.x_max);
-        System.out.println("	-> Formigas que entraram no rio: " + this.num_best);
+        System.out.println("	-> Formigas que estavam no rio: " + this.num_best);
         System.out.println( "	-> Fitness: " + this.fitness);
     }
 
