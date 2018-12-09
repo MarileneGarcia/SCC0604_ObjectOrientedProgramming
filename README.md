@@ -1,5 +1,5 @@
 # Trabalho_POO   
-   ## Alunos - números USP:
+   ## Alunos - Números USP:
    </p> Leandro Antonio Silva - 9805341
    </p> Maria Luisa do Nascimento da Silva - 10310721
    </p> Marilene Andrade Garcia - 10276974
