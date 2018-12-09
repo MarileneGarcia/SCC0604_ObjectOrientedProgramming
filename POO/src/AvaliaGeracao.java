@@ -8,12 +8,12 @@ public class AvaliaGeracao {
 
     ArrayList<Formigueiro> formigueiros;
 
-    public AvaliaGeracao(int nFormigueiros, ArrayList<Formigueiro> formigueiros){
+    public AvaliaGeracao(int nFormigueiros, ArrayList<Formigueiro> formigueiros){ //inicializa a classe
         this.nFormigueiros = nFormigueiros;
         this.formigueiros = formigueiros;
     }
 
-    public void avaliacao(){
+    public void avaliacao(){                    //avalia o codigo 
         System.out.println("----Relatorio da geracao----");
 
         Iterator<Formigueiro> iterator = formigueiros.iterator();
@@ -21,10 +21,11 @@ public class AvaliaGeracao {
 
         k = 0;
         while(iterator.hasNext() && k < nFormigueiros){
-            aux = iterator.next();
-            double formula = (0.8*((x_esperado - aux.getX_medio())/x_esperado))+ (0.2*((x_esperado-aux.getX_max())/x_esperado));
+            aux = iterator.next(); 
+            /*avalia cada formigueiro a partir da posição media das formigas e da posição da formiga que chegou mais longe */
+            double formula = (0.8*((x_esperado - aux.getX_medio())/x_esperado))+ (0.2*((x_esperado-aux.getX_max())/x_esperado)); 
             float fitness = (float) formula;
-            aux.setFitness(fitness);
+            aux.setFitness(fitness); //seta o fitness do formigueiro como valor float
             k++;
         }
     }
