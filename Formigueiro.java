@@ -8,20 +8,22 @@ public class Formigueiro{
     public static final int AGUA = 2; // azul
     public static final int PAREDE = 3; // preto
     
+    /* Constantes que definem o tamanho do cenario */
     public static final int L_CENARIO = 530;
     public static final int H_CENARIO = 280;
 
-    public static final int TAXA_MUT = 15;
-    public static final int TAM_DNA = 16;
+    public static final int TAXA_MUT = 15; // Taxa de mutacao, em %
+    public static final int TAM_DNA = 16; // Numero de aminoacidos do DNA
 
-    private int indice;
-    private ArrayList<Formiga> formigas;
-    private int DNA[];
+    /* Variaveis que definem o formigueiro */
+    private int indice; // indice
+    private ArrayList<Formiga> formigas; // array das formigas
+    private int matriz[][]; 
+    private int DNA[]; // DNA
     private float x_medio;
     private int x_max;
     private float num_best;
     private float fitness;
-    private int matriz[][]; 
 
     public Formigueiro(int indice, int preenchimento) {
         this.indice = indice;
@@ -36,18 +38,18 @@ public class Formigueiro{
         matriz = new int[L_CENARIO][H_CENARIO];
         for (int j = 0; j < H_CENARIO; j++) {
             for (int i = 0; i < L_CENARIO; i++) {
-                if (j == 0 || j == (H_CENARIO - 1) || i == 0 || i == (L_CENARIO - 1))
+                if (j == 0 || j == (H_CENARIO - 1) || i == 0 || i == (L_CENARIO - 1)) // Paredes: preto
                     matriz[i][j] = PAREDE;
-                else if (i > 0.5 * L_CENARIO && i < 0.7 * L_CENARIO)
+                else if (i > 0.5 * L_CENARIO && i < 0.7 * L_CENARIO) // Agua: azul
                     matriz[i][j] = AGUA;
-                else if (i <= 0.5 * L_CENARIO){
+                else if (i <= 0.5 * L_CENARIO){ // Formiga: vermelho
                     if (gerador.nextInt(100)<preenchimento){
                         matriz[i][j] = FORMIGA;
                         formigas.add(new Formiga(i,j));
                     }
                 }
                 else 
-                    matriz[i][j] = VAZIO;
+                    matriz[i][j] = VAZIO; // Vazio: branco
             }
         }
         //System.out.println("Numero de formigas " + formigas.size());
@@ -60,33 +62,19 @@ public class Formigueiro{
         //System.out.println();
     }
 
-    public int getIndice(){
-        return this.indice;
-    }
+    public int getIndice() {return this.indice;}
 
-    public int getCelula(int x, int y) {
-        return matriz[x][y];
-    }
+    public int getCelula(int x, int y) {return matriz[x][y];}
 
-    public int[][] getMatriz() {
-        return matriz;
-    }
+    public int[][] getMatriz() {return matriz;}
 
-    public void setDNA(int[] DNA) {
-        this.DNA = DNA;
-    }
+    public void setDNA(int[] DNA) {this.DNA = DNA;}
 
-    public int[] getDNA() {
-        return DNA;
-    }
+    public int[] getDNA() {return DNA;}
 
-    public void setAminoacido(int indice, int valor) {
-        this.DNA[indice] = valor;
-    }
+    public void setAminoacido(int indice, int valor) {this.DNA[indice] = valor;}
 
-    public int getAminoacido(int indice) {
-        return this.DNA[indice];
-    }
+    public int getAminoacido(int indice) {return this.DNA[indice];}
 
     public void printMatriz() {
         for (int j = 0; j < H_CENARIO; j++) {
@@ -97,33 +85,21 @@ public class Formigueiro{
         }
     }
 
-    public void setX_medio(float x_medio) {
-        this.x_medio = x_medio;
-    }
+    public void setX_medio(float x_medio) {this.x_medio = x_medio;}
 
-    public void setFitness(float fitness) {
-        this.fitness = fitness;
-    }
+    public void setFitness(float fitness) {this.fitness = fitness;}
 
-    public void setX_max(int x_max) {
-        this.x_max = x_max;
-    }
+    public void setX_max(int x_max) {this.x_max = x_max;}
 
-    public ArrayList<Formiga> getFormigas() { return formigas; }
+    public ArrayList<Formiga> getFormigas() {return formigas;}
 
-    public float getX_medio() {
-        return x_medio;
-    }
+    public float getX_medio() {return x_medio;}
 
-    public void removeFormiga(int i){ formigas.remove(i);}
+    public void removeFormiga(int i) {formigas.remove(i);}
 
-    public int getX_max() {
-        return x_max;
-    }
+    public int getX_max() {return x_max;}
 
-    public float getFitness() {
-        return fitness;
-    }
+    public float getFitness() {return fitness;}
 
     public void rodaGeracao() {
         //System.out.println("Numero de formigas antes: " + formigas.size());

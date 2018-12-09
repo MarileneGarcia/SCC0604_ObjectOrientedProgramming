@@ -4,15 +4,15 @@ import java.util.Scanner;
 
 public class Main
 {
-    public static final int GERACOES = 50;
-    public static final int TIME_GERACAO = 300;
-    public static final int NUM_FORMIGUEIROS = 4;
+    public static final int GERACOES = 50; // Numero de geracoes
+    public static final int TIME_GERACAO = 300; // "Tempo" de cada geracao
+    public static final int NUM_FORMIGUEIROS = 4; // Numero de formigueiros
 
     public static void main(String[] params) throws IOException, InterruptedException
     {
-        GuiNova janela = new GuiNova();
+        GuiNova janela = new GuiNova(); // Chamada da interface grafica
 
-        ArrayList<Formigueiro> formigueiros = new ArrayList<Formigueiro>();
+        ArrayList<Formigueiro> formigueiros = new ArrayList<Formigueiro>(); // Criacao dos formigueiros
 
         int[][] matriz_0 = null;
         int[][] matriz_1 = null;
@@ -20,7 +20,7 @@ public class Main
         int[][] matriz_3 = null;
 
         for(int aux=0; aux<NUM_FORMIGUEIROS; aux++) {
-            formigueiros.add(new Formigueiro(aux, 60));
+            formigueiros.add(new Formigueiro(aux, 60)); // Inicializacao dos formigueiros
         }       
 
         System.out.println("Esperando inicio...");
@@ -52,9 +52,9 @@ public class Main
                     System.out.println();
                 }*/
 
-                System.out.println("Pausar: " + janela.pausar);
+                //System.out.println("Pausar: " + janela.pausar);
                 if(janela.pausar == false){
-                    System.out.println("Iniciar: " + janela.iniciar);
+                    //System.out.println("Iniciar: " + janela.iniciar);
                     if(janela.iniciar == true){
                         System.out.print("");
                         janela.editAll(matriz_0, matriz_1, matriz_2, matriz_3, i, j);
@@ -64,7 +64,7 @@ public class Main
                             //System.out.println("Formigueiro: " + formigueiro_analisar.getIndice());
                             //formigueiro_analisar.printMatriz();
                             //System.out.println();
-                            formigueiro_analisar.rodaGeracao();
+                            formigueiro_analisar.rodaGeracao(); // Execucao do loop
 
                             //System.out.println();
                         }
@@ -78,15 +78,19 @@ public class Main
                 //Thread.currentThread().sleep(100);
             }
 
+            // Avaliacao da geracao
             for (Formigueiro formigueiro_analisar : formigueiros) 
                 formigueiro_analisar.avaliaGeracao();
 
+            // Crossover entre os DNA's dos formigueiros
             Crossover crossover = new Crossover(formigueiros);
             int melhor_formigueiro = crossover.crossover();
 
+            // Mutacao aleatoria do DNA dos formigueiros
             Mutacao mutacao = new Mutacao(formigueiros, melhor_formigueiro);
             mutacao.mutacao();
 
+            // Renascimento de uma nova geracao com os novos DNA's
             for (Formigueiro formigueiro_analisar : formigueiros) 
                 formigueiro_analisar.rebootGeracao(60);
 

@@ -2,10 +2,10 @@ import java.util.*;
 import java.lang.*;
 
 public class Formiga{
-    // Constantes de informação da formiga
+    /* Constantes de informação da formiga */
     public static final int MAX_VIDA = 5;
 
-    /* Possiveis decisoes: caracteristicas do DNA */ 
+    /* Possiveis decisoes: caracteristicas ("aminoacidos") do DNA */ 
     public static final int SEGUE_AGUA = 0;
     public static final int SEGUE_PAREDE = 1;
     public static final int SEGUE_FORMIGAS = 2;
@@ -13,18 +13,18 @@ public class Formiga{
     public static final int FICA_PARADO = 4;
     public static final int PROCURA_ALEATORIAMENTE = 5;
 
-    /* Possiveis decisoes (logicas) */ 
+    /* Possiveis decisoes logicas */ 
     public static final int PARADO = 0;
     public static final int NORTE = 1;
     public static final int LESTE = 2;
     public static final int SUL = 3;
     public static final int OESTE = 4;
 
-    // Variáveis que definem a classe formiga
+    /* Variáveis que definem a classe formiga */
     private int x;
     private int y;
     private int vida;
-    private int visao_norte;
+    private int visao_norte; 
     private int visao_leste;
     private int visao_sul;
     private int visao_oeste;
@@ -37,41 +37,28 @@ public class Formiga{
         this.vida = MAX_VIDA;
     }
 
-    public int getX(){
-        return this.x;
-    }
+    public int getX() {return this.x;}
 
-    public int getY(){
-        return this.y;
-    }
+    public int getY() {return this.y;}
 
-    public int getVida(){
-        return this.vida;
-    }
+    public int getVida() {return this.vida;}
 
-    public int getNorte(){
-        return this.visao_norte;
-    }
+    public int getNorte() {return this.visao_norte;}
 
-    public int getLeste(){
-        return this.visao_leste;
-    }
+    public int getLeste() {return this.visao_leste;}
 
-    public int getSul(){
-        return this.visao_sul;
-    }
+    public int getSul() {return this.visao_sul;}
 
-    public int getOeste(){
-        return this.visao_oeste;
-    }
+    public int getOeste() {return this.visao_oeste;}
 
-    public void setVida(int vida) { this.vida = vida; }
+    public void setVida(int vida) {this.vida = vida;}
 
+    /* O metodo setVisao analisa a matriz de pixeis para determinar o que cada formiga ve
+        em seus arredores */
     public void setVisao(int[][] matriz) {
         int norte = -1, sul = -1, leste = -1, oeste = -1;
         int x = this.getX();
         int y = this.getY();
-
 
         switch(matriz[x][y-1]) // Norte
         {
@@ -161,7 +148,9 @@ public class Formiga{
         //System.out.println(" 	-> Visao Leste:  " + this.visao_leste);
     }
 
-
+    /* A partir do DNA do formigueiro e da visao dela, uma decisao e tomada. Os estados dependem
+    do que a formiga ve. Se ela ve agua, formiga e vazio, um aminoacido do DNA sera usado para tomar
+    a decisao. Se ela ver apenas vazio, outra decisao. E assim por diante */
     public void getDecisao(int[] DNA) {
         int estado;
         int agua, formigas, vazio, parede;
@@ -202,6 +191,7 @@ public class Formiga{
         //System.out.println(" > Decisão: " + this.decisao);
     }
 
+    /* O metodo setMov pega a decisao da formiga e atualiza a matriz que define o formigueiro */
     public void setMov(int[][] matriz) {
         //System.out.println(" > Vida antes do move: " + this.vida);
         int aux;
@@ -444,6 +434,8 @@ public class Formiga{
             break;
         }
 
+        /* A vida da formiga e atualizada. Caso ela esteja rodeada de agua (4 lados), ela perde um ponto
+        de vida */
         int count_neighbor = 0;
         if( (this.x > 0.5 * Formigueiro.L_CENARIO) && (this.x < 0.7 * Formigueiro.L_CENARIO) ) {
             if(this.visao_norte == Formigueiro.AGUA) count_neighbor++;
