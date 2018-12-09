@@ -186,6 +186,7 @@ public class GuiNova {
             //Quando o botão "pausar" é apertado, a bool iniciar recebe true e o código para de rodar e a janela é fechada
             pausar = true;
             quadro.setVisible(false);
+			System.exit(0);
         }
     }
 
