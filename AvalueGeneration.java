@@ -4,7 +4,7 @@ public class AvalueGeneration
 {    
     public AvalueGeneration(){}
     
-       void avalueGeneration(int n_formigueiros, ArrayList<Formigueiro> formigueiro)
+    void avalueGeneration(int n_formigueiros, ArrayList<Formigueiro> formigueiro)
     {
         int k;
         int i_esperado;

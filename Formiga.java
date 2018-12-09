@@ -451,7 +451,7 @@ public class Formiga{
             if(this.visao_sul == Formigueiro.AGUA) count_neighbor++;
             if(this.visao_oeste == Formigueiro.AGUA) count_neighbor++;
 
-            if(count_neighbor >= 2) this.vida = this.vida - 1; 
+            if(count_neighbor > 3) this.vida = this.vida - 1; 
         }
             
         //System.out.println(" > Nova posicao: (" + this.x + " " + this.y + ")");

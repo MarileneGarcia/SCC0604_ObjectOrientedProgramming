@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 public class Main
 {
-    public static final int GERACOES = 2;
-    public static final int TIME_GERACAO = 500;
+    public static final int GERACOES = 50;
+    public static final int TIME_GERACAO = 300;
     public static final int NUM_FORMIGUEIROS = 4;
 
     public static void main(String[] params) throws IOException, InterruptedException
@@ -20,7 +20,7 @@ public class Main
         int[][] matriz_3 = null;
 
         for(int aux=0; aux<NUM_FORMIGUEIROS; aux++) {
-            formigueiros.add(new Formigueiro(aux, 80));
+            formigueiros.add(new Formigueiro(aux, 60));
         }       
 
         System.out.println("Esperando inicio...");
@@ -31,10 +31,9 @@ public class Main
 
         for(int i=0; (i<GERACOES) && (janela.pausar == false); i++) 
         {
-            System.out.println("Geração: " + i);
             for(int j=0; (j<TIME_GERACAO) && (janela.pausar == false); j++) 
             {
-                System.out.println("Loop: " + j);      
+                System.out.println("Loop: " + j + " (Geração: " + i + ")");      
 
                 int index = 0;
                 for (Formigueiro formigueiro_analisar : formigueiros) 
@@ -53,33 +52,43 @@ public class Main
                     System.out.println();
                 }*/
 
-                System.out.println("Pausar: " + janela.pausar);
+                //System.out.println("Pausar: " + janela.pausar);
                 if(janela.pausar == false){
-                    System.out.println("Iniciar: " + janela.iniciar);
+                    //System.out.println("Iniciar: " + janela.iniciar);
                     if(janela.iniciar == true){
                         System.out.print("");
                         janela.editAll(matriz_0, matriz_1, matriz_2, matriz_3);
 
                         for (Formigueiro formigueiro_analisar : formigueiros) 
                         {
-                            System.out.println("Formigueiro: " + formigueiro_analisar.getIndice());
+                            //System.out.println("Formigueiro: " + formigueiro_analisar.getIndice());
                             //formigueiro_analisar.printMatriz();
-                            System.out.println();
+                            //System.out.println();
                             formigueiro_analisar.rodaGeracao();
 
-                            System.out.println();
+                            //System.out.println();
                         }
                     }
                 }         
                 //Thread.currentThread().sleep(100);
             }
 
-            //avaliaGeracao();
-            //crossover();
-            //mutacao();
-            //reboot();
+            for (Formigueiro formigueiro_analisar : formigueiros) 
+                formigueiro_analisar.avaliaGeracao();
 
-            System.out.println();
+            Crossover crossover = new Crossover(formigueiros);
+            int melhor_formigueiro = crossover.crossover();
+
+            Mutacao mutacao = new Mutacao(formigueiros, melhor_formigueiro);
+            mutacao.mutacao();
+
+            for (Formigueiro formigueiro_analisar : formigueiros) 
+                formigueiro_analisar.rebootGeracao(60);
+
+            //Scanner scanner = new Scanner(System.in);
+            //String line = scanner.nextLine();
+
+            //System.out.println();
             System.out.println();
         }
     }
