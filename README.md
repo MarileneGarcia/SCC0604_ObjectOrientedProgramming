@@ -2,7 +2,7 @@
 
 #Algoritmo Evolutivo
 
-    Nosso trabalho de programação orientada a objetos é um algoritmo evolutivo no qual são setados 4 objetos Formigueiro,
+   Nosso trabalho de programação orientada a objetos é um algoritmo evolutivo no qual são setados 4 objetos Formigueiro,
 dentro desses objetos são inicializados os objetos Formiga, e na interface gráfica GUI são inicializados 4 cenários em
 quatro telas diferentes da janela, cada um contém um rio (pixels azuis) que dividem cada tela em duas partes de território
 (pixels brancos), no território a esquerda há um dos formigueiros que contém formigas (pixels vermelhos) e o objetivo da
