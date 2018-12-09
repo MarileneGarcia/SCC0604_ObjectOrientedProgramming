@@ -1,12 +1,12 @@
-# Trabalho_POO
-
-## Algoritmo Evolutivo
-   
-   ### Alunos - números USP:
+# Trabalho_POO   
+   ## Alunos - números USP:
    </p> Leandro Antonio Silva - 9805341
    </p> Maria Luisa do Nascimento da Silva - 10310721
    </p> Marilene Andrade Garcia - 10276974
-   </p> Paulo Henrique Sebastiao de Moura - 10310471 </br>
+   </p> Paulo Henrique Sebastiao de Moura - 10310471 </p> </p>
+   
+   ## Algoritmo Evolutivo
+   
    </p>Nosso trabalho de programação orientada a objetos é um algoritmo evolutivo no qual são setados 4 objetos Formigueiro,
 dentro desses objetos são inicializados os objetos Formiga, e na interface gráfica GUI são inicializados 4 cenários em
 quatro telas diferentes da janela, cada um contém um rio (pixels azuis) que dividem cada tela em duas partes de território
