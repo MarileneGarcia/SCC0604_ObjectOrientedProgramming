@@ -9,9 +9,9 @@ import javax.imageio.ImageIO;
 import java.util.Random;
 
 public class GuiNova {
-
+    //Variáveis que auxiliam o controle da GUI pelos botões
     public boolean iniciar = false, pausar = false;
-    /*public static void main(String args[]) {
+   /* public static void main(String args[]) {
         GuiNova inter = new GuiNova();
         int matriz1[][] = new int[530][280];
         int matriz2[][] = new int[530][280];
@@ -32,7 +32,7 @@ public class GuiNova {
                             matriz4[i][j] = r.nextInt(3);
                         }
                     }
-                    inter.editAll(matriz1, matriz2, matriz3, matriz4);
+                    inter.editAll(matriz1, matriz2, matriz3, matriz4, 0, 0);
                 }   
             }
         }
@@ -40,10 +40,8 @@ public class GuiNova {
 
     
 
-    // Campos
+    // Campos - Componentes utilizandos na montagem da GUI
     private JFrame quadro;
-    private JLabel rotuloGera;
-    private JLabel rotuloMut;
     private JButton boton1;
     private JButton boton2;
     private JButton boton3;
@@ -64,7 +62,7 @@ public class GuiNova {
     private BufferedImage img3;
     private BufferedImage img4;
     private JLabel gerac;
-    private JLabel mut;
+    private JLabel loop;
 
     // Construtor
     public GuiNova() {
@@ -77,30 +75,34 @@ public class GuiNova {
         quadro = new JFrame("Formigueiros");
 
         gerac = new JLabel( "                                 Geração: " );
-        mut = new JLabel( "                                   Mutação: " );
+        loop = new JLabel( "                                   Loop: " );
         JFrame.setDefaultLookAndFeelDecorated(true);
+        //Botões
         boton1 = new JButton("Iniciar");
         boton2 = new JButton("Pausar");
         boton3 = new JButton("Parar");
+        //ActionListeners para os botões
         boton1.addActionListener(new ReconhecedorActionListenerIniciar());
         boton2.addActionListener(new ReconhecedorActionListenerPausar());
         boton3.addActionListener(new ReconhecedorActionListenerParar());
-
+        //Container que conterá os formigueiros
         container = new JPanel();
         container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
         container.setSize(1200, 700);
+
+        //Afim de estruturar melhor a GUI, foram criados dois containers auxiliares
         container1 = new JPanel();
         container1.setLayout(new BoxLayout(container1, BoxLayout.X_AXIS));
         container1.setSize(600, 640);
-
         container2 = new JPanel();
         container2.setLayout(new BoxLayout(container2, BoxLayout.X_AXIS));
         container2.setSize(600, 640);
 
+        //Container que contém os botões e informações sobre Mutação e Loop
         controle = new JPanel();
-
         controle.setSize(1200, 60);
 
+        //Paineis que conterão os formigueiros (matrizes de pixels)
         formigueiro1 = new JPanel();
         formigueiro2 = new JPanel();
         formigueiro3 = new JPanel();
@@ -108,15 +110,14 @@ public class GuiNova {
 
         int width = 530; // 545
         int height = 280; // 300
+        //Imagens que representaram os cenárioas
         img1 = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
         img2 = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
         img3 = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
         img4 = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 
-
+        //Inicializa os cenários (terra e rio)
         setInic();
-
-        //controle.setMaximumSize(new Dimension(1200, 60));
         formigueiro1.setMaximumSize(new Dimension(557, 320));
         formigueiro2.setMaximumSize(new Dimension(557, 320));
         formigueiro3.setMaximumSize(new Dimension(557, 320));
@@ -133,6 +134,7 @@ public class GuiNova {
         formigueiro3.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Formigueiro3"));
         formigueiro4.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Formigueiro4"));
 
+        //Inclui as componentes na GUI
         label1 = new JLabel(new ImageIcon(img1));
         label2 = new JLabel(new ImageIcon(img2));
         label3 = new JLabel(new ImageIcon(img3));
@@ -141,16 +143,13 @@ public class GuiNova {
         formigueiro2.add(label2);
         formigueiro3.add(label3);
         formigueiro4.add(label4);
-
         controle.setLayout(new FlowLayout());
         controle.add(boton1);
         controle.add(boton2);
         controle.add(boton3);
         controle.add(gerac);
-        controle.add(mut);
-
+        controle.add(loop);
         container.add(controle);
-
         container1.add(formigueiro1);
         container1.add(formigueiro2);
         container2.add(formigueiro3);
@@ -159,6 +158,7 @@ public class GuiNova {
         container.add(container2);
 
         quadro.add(container);
+        //Seta o tamanho da GUI e cria a janela
         quadro.setSize(1200, 800);
         quadro.setVisible(true);
 
@@ -166,6 +166,7 @@ public class GuiNova {
 
     class ReconhecedorActionListenerIniciar implements ActionListener {
         public void actionPerformed(ActionEvent event) {
+            //Quando o botão "iniciar" é apertado, a bool iniciar recebe true e o código começa a rodar
             pausar = false;
             iniciar = true;
         }
@@ -173,6 +174,7 @@ public class GuiNova {
 
     class ReconhecedorActionListenerPausar implements ActionListener {
         public void actionPerformed(ActionEvent event) {
+            //Quando o botão "pausar" é apertado, a bool iniciar recebe true e o código para de rodar
             pausar = true;
         }
     }
@@ -181,13 +183,14 @@ public class GuiNova {
 
     class ReconhecedorActionListenerParar implements ActionListener {
         public void actionPerformed(ActionEvent event) {
+            //Quando o botão "pausar" é apertado, a bool iniciar recebe true e o código para de rodar e a janela é fechada
             pausar = true;
             quadro.setVisible(false);
         }
     }
 
+    //Método que editar a matriz do formigueiro 1 de acordo com a matrix de inteiros que é passada
     public void editarf1(int matriz[][]) {
-        //label1 = new JLabel(new ImageIcon(img));
         int p, width = 530, height = 280;
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
@@ -211,22 +214,21 @@ public class GuiNova {
                 }
             }
         }
-        //quadro.setVisible(true);
     }
 
-    public void editAll(int matriz1[][], int matriz2[][], int matriz3[][], int matriz4[][]){
+    //Método que chamar os métodos de atualizar todas as matrizes e altera a informação sobre loop e geração na GUI
+    public void editAll(int matriz1[][], int matriz2[][], int matriz3[][], int matriz4[][], int i, int j){
         editarf1(matriz1);
         editarf2(matriz2);
         editarf3(matriz3);
         editarf4(matriz4);
-        /*Timer timer = new Timer(100, ActionListenerAtu);
-        timer.start();*/
+        gerac.setText("                                 Geração: " + i);
+        loop.setText("                                 Loop: " + j);
         SwingUtilities.updateComponentTreeUI(quadro); 
         quadro.setVisible(true);
     }
-
+    //Método que editar a matriz do formigueiro 2 de acordo com a matrix de inteiros que é passada
     public void editarf2(int matriz[][]) {
-        //label1 = new JLabel(new ImageIcon(img));
         int p, width = 530, height = 280;
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
@@ -250,10 +252,10 @@ public class GuiNova {
                 }
             }
         }
-        //quadro.setVisible(true);
     }
+
+    //Método que editar a matriz do formigueiro 3 de acordo com a matrix de inteiros que é passada
     public void editarf3(int matriz[][]) {
-        //label1 = new JLabel(new ImageIcon(img));
         int p, width = 530, height = 280;
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
@@ -277,10 +279,9 @@ public class GuiNova {
                 }
             }
         }
-       // quadro.setVisible(true);
     }
+    //Método que editar a matriz do formigueiro 4 de acordo com a matrix de inteiros que é passada
     public void editarf4(int matriz[][]) {
-        //label1 = new JLabel(new ImageIcon(img));
         int p, width = 530, height = 280;
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
@@ -305,9 +306,10 @@ public class GuiNova {
             }
         }
   
-        //quadro.setVisible(true);
     }
 
+    //Seta as matrizes na condições de cenário iniciais (sem formigas)
+    //Sendo terra (branco) anas laterais do cenário e branco no centro.
     public void setInic() {
         int width = 530; // 545
         int height = 280; // 300

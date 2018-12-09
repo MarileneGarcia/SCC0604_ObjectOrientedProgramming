@@ -52,12 +52,12 @@ public class Main
                     System.out.println();
                 }*/
 
-                //System.out.println("Pausar: " + janela.pausar);
+                System.out.println("Pausar: " + janela.pausar);
                 if(janela.pausar == false){
-                    //System.out.println("Iniciar: " + janela.iniciar);
+                    System.out.println("Iniciar: " + janela.iniciar);
                     if(janela.iniciar == true){
                         System.out.print("");
-                        janela.editAll(matriz_0, matriz_1, matriz_2, matriz_3);
+                        janela.editAll(matriz_0, matriz_1, matriz_2, matriz_3, i, j);
 
                         for (Formigueiro formigueiro_analisar : formigueiros) 
                         {
@@ -68,6 +68,11 @@ public class Main
 
                             //System.out.println();
                         }
+                    }
+                }else{
+                    System.out.print("");
+                    while(janela.pausar == true){
+                        System.out.print("");
                     }
                 }         
                 //Thread.currentThread().sleep(100);
