@@ -3,7 +3,7 @@
    </p> Leandro Antonio Silva - 9805341
    </p> Maria Luisa do Nascimento da Silva - 10310721
    </p> Marilene Andrade Garcia - 10276974
-   </p> Paulo Henrique Sebastiao de Moura - 10310471 </p> </p>
+   </p> Paulo Henrique Sebastião de Moura - 10310471 </p> </p>
    
    ## Algoritmo Evolutivo
    
